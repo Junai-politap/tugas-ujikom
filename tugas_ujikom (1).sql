@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 24 Agu 2025 pada 05.07
+-- Waktu pembuatan: 24 Agu 2025 pada 07.46
 -- Versi server: 8.0.30
 -- Versi PHP: 8.3.22
 
@@ -84,6 +84,13 @@ CREATE TABLE `kontak` (
   `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data untuk tabel `kontak`
+--
+
+INSERT INTO `kontak` (`id`, `alamat`, `telphone`, `email`, `created_at`, `updated_at`) VALUES
+(1, 'Jalan Rangge Sentap, Dalong, Sukaharja, Kec. Delta Pawan, Kabupaten Ketapang, Kalimantan Barat 78112', '05343037213', 'politap@gmail.com', '2025-08-24 05:58:30', '2025-08-23 22:58:30');
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +105,36 @@ CREATE TABLE `tentang_kami` (
   `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `tentang_kami`
+--
+
+INSERT INTO `tentang_kami` (`id`, `judul`, `deskripsi`, `poto`, `created_at`, `updated_at`) VALUES
+(1, 'Tentang Kami', '<div style=\"line-height: 22px;\"><div style=\"font-family: Consolas, &quot;Courier New&quot;, monospace; white-space: pre; text-align: justify;\"><font color=\"#000000\" style=\"\"><span style=\"font-family: Arial;\">Sekolah adalah sebuah lembaga pendidikan formal yang dirancang untuk menyelenggarakan</span></font></div><div style=\"font-family: Consolas, &quot;Courier New&quot;, monospace; white-space: pre; text-align: justify;\"><font color=\"#000000\" style=\"\"><span style=\"font-family: Arial;\">proses </span></font><span style=\"color: rgb(0, 0, 0); font-size: 1rem; font-family: Arial;\">belajar-mengajar secara terstruktur. Di sekolah, siswa mendapatkan bimbingan dari</span></div><div style=\"font-family: Consolas, &quot;Courier New&quot;, monospace; white-space: pre; text-align: justify;\"><span style=\"color: rgb(0, 0, 0); font-size: 1rem; font-family: Arial;\">guru untuk</span><span style=\"color: rgb(0, 0, 0); font-size: 1rem; font-family: Arial;\">mengembangkan pengetahuan, keterampilan, sikap, dan nilai yang dibutuhkan</span></div><div style=\"font-family: Consolas, &quot;Courier New&quot;, monospace; white-space: pre; text-align: justify;\"><span style=\"color: rgb(0, 0, 0); font-size: 1rem; font-family: Arial;\">dalam kehidupan </span><span style=\"color: rgb(0, 0, 0); font-size: 1rem; font-family: Arial;\">pribadi, sosial, maupun dunia kerja.</span></div><div style=\"\"><span style=\"font-family: Consolas, &quot;Courier New&quot;, monospace; white-space: pre; color: rgb(0, 0, 0); font-size: 1rem;\"><br></span><b>Ciri-ciri Sekolah</b></div><div style=\"\"><span style=\"font-size: 1rem;\">-Ada kurikulum → berisi materi pelajaran yang harus dipelajan</span></div><div style=\"\"><span style=\"font-size: 1rem;\">-Ada guru → berperan sebagai pendidik dan pembimbing.</span></div><div style=\"\"><span style=\"font-size: 1rem;\">-Ada siswa → peserta didik yang menerima pembelajaran.</span></div><div style=\"\"><span style=\"font-size: 1rem;\">-Ada aturan/tata tertib → agar proses belajar berjalan tertib.</span></div><div style=\"\"><span style=\"font-size: 1rem;\">-Ada tujuan → mencerdaskan, mendidik, dan membentuk karakter.</span></div><div style=\"\"><span style=\"font-size: 1rem;\"><br></span></div><p style=\"\"><b>Fungsi Sekolah</b></p><p style=\"\"><span style=\"font-size: 1rem;\">-</span>Pendidikan → mengajarkan ilmu pengetahuan dan keterampilan</p><p style=\"\">-Sosialisasi → membentuk kepribadian, sikap, dan perilaku sosial</p><p style=\"\">-Pembinaan karakter → menanamkan nilai moral, etika, dan budaya</p><p style=\"\">-Persiapan masa depan → membekali siswa untuk melanjutkan pendidikan atau bekerja.</p></div>', 'app/tentang-kami/1756016174-XMzqI.jpg', '2025-08-24 06:39:13', '2025-08-23 23:39:13');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `remember_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `nama`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin', '$2y$12$F0gSZeeOSG5ZNGR5aoLdK.HPXxDo/9rz/32feOHEgv7kUHE8jnnmm', NULL, '2025-08-24 00:33:43', '2025-08-24 00:33:43');
 
 --
 -- Indexes for dumped tables
@@ -128,6 +165,12 @@ ALTER TABLE `tentang_kami`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -147,13 +190,19 @@ ALTER TABLE `kegiatan`
 -- AUTO_INCREMENT untuk tabel `kontak`
 --
 ALTER TABLE `kontak`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tentang_kami`
 --
 ALTER TABLE `tentang_kami`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
