@@ -13,7 +13,7 @@ class TentangKamiController extends Controller
      */
     public function index()
     {
-        $data['tentang_kami'] = TentangKami::all();
+        $data['list_tentang_kami'] = TentangKami::all();
         return view('backend.tentang-kami.index', $data);
     }
 
@@ -22,7 +22,7 @@ class TentangKamiController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.tentang-kami.create');
     }
 
     /**
@@ -30,7 +30,13 @@ class TentangKamiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = New TentangKami();
+        $data->judul = request('judul');
+        $data->deskripsi = request('deskripsi');
+        $data->handleUploadPoto();
+        $data->save();
+
+        return redirect('admin/tentang-kami')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -38,7 +44,8 @@ class TentangKamiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data['tentang_kami'] = TentangKami::find($id);
+        return view('backend.tentang-kami.show', $data);
     }
 
     /**
@@ -46,7 +53,8 @@ class TentangKamiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['tentang_kami'] = TentangKami::find($id);
+        return view('backend.tentang-kami.edit', $data);
     }
 
     /**
@@ -54,7 +62,13 @@ class TentangKamiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $data = TentangKami::find($id);
+        $data->judul = request('judul');
+        $data->deskripsi = request('deskripsi');
+        $data->handleUploadPoto();
+        $data->save();
+
+        return redirect('admin/tentang-kami')->with('warning', 'Data Berhasil Diedit');
     }
 
     /**
@@ -62,6 +76,7 @@ class TentangKamiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        TentangKami::destroy($id);
+        return back()->with('danger', 'Data Berhasil Dihapus');
     }
 }

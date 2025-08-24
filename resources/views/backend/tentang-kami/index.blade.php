@@ -4,9 +4,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url('mahasiswa/create') }}" class="btn btn-primary float-right"><span
+                    <a href="{{ url('admin/tentang-kami/create') }}" class="btn btn-primary float-right"><span
                             class="fa fa-plus"></span> Tambah Data</a>
-                    <h3 class="card-title">Data Mahasiswa</h3>
+                    <h3 class="card-title">Data Tentang Kami</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -15,26 +15,25 @@
                             <tr class="text-center">
                                 <th>No</th>
                                 <th>Aksi</th>
-                                <th>NIM</th>
-                                <th>Nama</th>
-                                <th>Tahun Masuk</th>
-
+                                <th>Judul</th>
+                                <th>Poto</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($list_mahasiswa as $mahasiswa)
+                            @foreach ($list_tentang_kami as $tentang_kami)
                                 <tr class="text-center">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ url("mahasiswa/$mahasiswa->id") }}" class="btn btn-info"><span
+                                            <a href="{{ url("admin/tentang-kami/$tentang_kami->id") }}" class="btn btn-info"><span
                                                     class="fa fa-info"></span>
                                                 Lihat</a>
-                                            <a href="{{ url("mahasiswa/$mahasiswa->id") }}/edit"
+                                            <a href="{{ url("admin/tentang-kami/$tentang_kami->id") }}/edit"
                                                 class="btn btn-warning"><span class="fa fa-edit"></span>
                                                 Edit</a>
 
-                                            <form action="{{ url('mahasiswa', $mahasiswa->id) }}" method="post"
+                                            <form action="{{ url('admin/tentang-kami', $tentang_kami->id) }}" method="post"
                                                 onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                                 @csrf
                                                 @method('delete')
@@ -44,10 +43,11 @@
                                         </div>
 
                                     </td>
-                                    <td>{{ $mahasiswa->nim }}</td>
-                                    <td> {{ $mahasiswa->nama }}</td>
-                                    <td> {{ $mahasiswa->tahun_masuk }}</td>
-
+                                    <td>{{ $tentang_kami->judul }}</td>
+                                    <td width="50%">
+                                        <img src="{{ url("public/$tentang_kami->poto") }}"
+                                        style="object-fit: cover; position: static; width: 50%;">
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -42,7 +42,7 @@
             </div>
 
             <div class="card-footer">
-                <button class="btn btn-default "><span class="fa fa-times"></span> Cancel</button>
+                <a href="{{ url('admin/kegiatan') }}" class="btn btn-default "><span class="fa fa-times"></span> Kembali</a>
                 <button type="submit" class="btn btn-primary float-right"><span class="fa fa-save"></span>
                     Simpan</button>
             </div>

@@ -64,7 +64,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('admin/tantang-kami') }}" class="nav-link">
+                    <a href="{{ url('admin/tentang-kami') }}" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                            Data Tentang Kami
