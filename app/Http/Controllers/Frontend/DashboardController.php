@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Berita;
+use App\Models\Kegiatan;
+use App\Models\Kontak;
+use App\Models\TentangKami;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,54 +16,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        $data['list_tentang_kami'] =TentangKami::Orderby('id', 'DESC')->get()->take(1);
+        $data['list_berita'] =Berita::all();
+        $data['list_kegiatan'] =Kegiatan::all();
+        $data['list_kontak'] =Kontak::Orderby('id', 'DESC')->get()->take(1);
+        return view('frontend.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function showBerita($id)  {
+        $data['berita'] = Berita::find($id);
+         $data['list_berita'] =Berita::Orderby('id', 'DESC')->get();
+        return view('frontend.detail-berita', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+     public function showKegiatan($id)  {
+        $data['kegiatan'] = Kegiatan::find($id);
+        $data['list_kegiatan'] =Kegiatan::Orderby('id', 'DESC')->get();
+        return view('frontend.detail-kegiatan', $data);
     }
 }

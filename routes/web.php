@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\BerandaController;
 use App\Http\Controllers\Backend\BeritaController as BackendBeritaController;
 use App\Http\Controllers\Backend\KegiatanController;
@@ -23,16 +24,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::prefix('admin')->group(function(){
 
-    Route::resource('/', BerandaController::class);
-    Route::resource('kegiatan', KegiatanController::class);
-    Route::resource('tentang-kami', TentangKamiController::class);
-    Route::resource('kontak', KontakController::class);
-    Route::resource('berita', BackendBeritaController::class);
+    Route::prefix('admin')->middleware('auth')->group(function(){
+        Route::resource('/', BerandaController::class);
+        Route::resource('kegiatan', KegiatanController::class);
+        Route::resource('tentang-kami', TentangKamiController::class);
+        Route::resource('kontak', KontakController::class);
+        Route::resource('berita', BackendBeritaController::class);
+    });
 
-});
+
 
 
 
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('/detail-berita/{id}', [DashboardController::class, 'showBerita']);
+Route::get('/detail-kegiatan/{id}', [DashboardController::class, 'showKegiatan']);
+
+
+Route::get('/admin-add', [AuthController::class, 'test']);
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'loginproses']);
+Route::get('logout', [AuthController::class, 'logout']);

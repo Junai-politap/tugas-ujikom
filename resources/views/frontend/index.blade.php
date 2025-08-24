@@ -1,6 +1,6 @@
 <x-frontend>
     <!-- Hero Section -->
-    <section id="hero" class="hero section light-background">
+    <section id="beranda" class="hero section light-background">
 
         <img src="{{ url('public/frontend') }}/assets/img/background-3.webp" alt="" data-aos="fade-in">
 
@@ -68,55 +68,25 @@
     </section><!-- /Hero Section -->
 
     <!-- Tantang Kami -->
-    <section id="about" class="about section">
+    <section id="tentang-kami" class="about section">
 
         <div class="container">
 
             <div class="row gy-4 gx-5">
+                @foreach ($list_tentang_kami as $tentang_kami)
+                    <div class="col-lg-6 position-relative align-self-start">
+                        <img src="{{ url("public/$tentang_kami->poto") }}" class="img-fluid" alt="">
+                    </div>
 
-                <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
-                    <img src="{{ url('public/frontend') }}/assets/img/poto-5.png" class="img-fluid" alt="">
-                </div>
+                    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                        <h3>{{ $tentang_kami->judul }}</h3>
+                        <p style="text-align: justify; line-height: 2px;">
+                            {!! nl2br($tentang_kami->deskripsi) !!}
+                        </p>
 
-                <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Tentang Kami</h3>
-                    <p>
-                        Sekolah adalah sebuah lembaga pendidikan formal yang dirancang untuk menyelenggarakan proses
-                        belajar-mengajar secara terstruktur. Di sekolah, siswa mendapatkan bimbingan dari guru untuk
-                        mengembangkan pengetahuan, keterampilan, sikap, dan nilai yang dibutuhkan dalam kehidupan
-                        pribadi, sosial, maupun dunia kerja
-                    </p>
-                    <ul>
-                        <li>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <div>
-                                <h5>Ciri-ciri Sekolah</h5>
-                                <p>
-                                <ul>- Ada kurikulum → berisi materi pelajaran yang harus dipelajari.</ul>
-                                <ul>- Ada guru → berperan sebagai pendidik dan pembimbing.</ul>
-                                <ul>- Ada siswa → peserta didik yang menerima pembelajaran.</ul>
-                                <ul>- Ada aturan/tata tertib → agar proses belajar berjalan tertib.</ul>
-                                <ul>- Ada tujuan → mencerdaskan, mendidik, dan membentuk karakter.</ul>
+                    </div>
+                @endforeach
 
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-circle-check"></i>
-                            <div>
-                                <h5>Fungsi Sekolah</h5>
-                                <p>
-                                <ul>- Pendidikan → mengajarkan ilmu pengetahuan dan keterampilan.</ul>
-                                <ul>- Sosialisasi → membentuk kepribadian, sikap, dan perilaku sosial.</ul>
-                                <ul>- Pembinaan karakter → menanamkan nilai moral, etika, dan budaya.</ul>
-                                <ul>- Persiapan masa depan → membekali siswa untuk melanjutkan pendidikan atau bekerja.
-                                </ul>
-                                </p>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
 
             </div>
 
@@ -157,7 +127,7 @@
     </section><!-- /Stats Section -->
 
     <!-- Kegiatan -->
-    <section id="services" class="doctors section">
+    <section id="kegiatan" class="doctors section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
@@ -168,33 +138,37 @@
         <div class="container">
 
             <div class="row gy-4">
+                @foreach ($list_kegiatan as $kegiatan)
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-member d-flex align-items-start">
+                            <div class="col-md-6">
+                                <div class="">
+                                    <img src="{{ url("public/$kegiatan->poto") }}" class="img-fluid"
+                                        style="object-fit: cover; position: static; width: 70%;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    <h4>{{ $kegiatan->nama_kegiatan }}</h4>
 
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-member d-flex align-items-start">
-                        <div class="pic"><img src="{{ url('public/frontend') }}/assets/img/doctors/doctors-1.jpg"
-                                class="img-fluid" alt=""></div>
-                        <div class="member-info">
-                            <h4>Kegiatan Belajar Mengajar</h4>
-                            <span></span>
-                            <p>Proses utama di sekolah, guru mengajar dan siswa belajar di kelas</p>
+                                    <p>{{ date('d-m-Y', strtotime($kegiatan->tanggal_kegiatan)) }}</p>
 
+                                </div>
+                                <br>
+                                <a href="{{ url("detail-kegiatan/$kegiatan->id") }}" class="btn btn-primary"><i class="bi bi-arrow-right"></i> Selengkapnya</a>
+                            </div>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
-
-
-
+                @endforeach
             </div>
-
         </div>
-
     </section>
     <!-- /Kegiatan -->
 
 
 
     <!-- Berita -->
-    <section id="doctors" class="doctors section">
+    <section id="berita" class="doctors section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
@@ -206,22 +180,28 @@
 
             <div class="row gy-4">
 
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-member d-flex align-items-start">
-                        <div class="pic"><img src="{{ url('public/frontend') }}/assets/img/doctors/doctors-1.jpg"
-                                class="img-fluid" alt=""></div>
-                        <div class="member-info">
-                            <h4>Upacara Peringatan Hari Kemerdekaan</h4>
+                @foreach ($list_berita as $berita)
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-member d-flex align-items-start">
+                            <div class="col-md-6">
+                                <div class="">
+                                    <img src="{{ url("public/$berita->poto") }}" class="img-fluid"
+                                        style="object-fit: cover; position: static; width: 70%;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    <h4>{{ $berita->judul }}</h4>
+                                    <span></span>
+                                    <p>{{ date('d-m-Y', strtotime($berita->tanggal_berita)) }}</p>
 
-                            <p>Pada hari Sabtu, 17 Agustus 2024, Sekolah menggelar upacara bendera dalam rangka
-                                memperingati Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-79</p>
-
+                                </div>
+                                 <br>
+                                <a href="{{ url("detail-berita/$berita->id") }}" class="btn btn-primary"><i class="bi bi-arrow-right"></i> Selengkapnya</a>
+                            </div>
                         </div>
                     </div>
-                </div><!-- End Team Member -->
-
-
-
+                @endforeach
             </div>
 
         </div>
@@ -230,7 +210,7 @@
     <!-- /Berita -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <section id="kontak" class="contact section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
@@ -254,7 +234,8 @@
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
                             <h3>Alamat</h3>
-                            <p>Jalan Rangge Sentap, Dalong, Sukaharja, Kec. Delta Pawan, Kabupaten Ketapang, Kalimantan Barat 78112</p>
+                            <p>Jalan Rangge Sentap, Dalong, Sukaharja, Kec. Delta Pawan, Kabupaten Ketapang, Kalimantan
+                                Barat 78112</p>
                         </div>
                     </div><!-- End Info Item -->
 

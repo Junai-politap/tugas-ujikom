@@ -23,7 +23,7 @@
 
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
+                <a href="{{ url('logout') }}" class="dropdown-item notify-item" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')" class="dropdown-item">
                     <i class="fas fa-arrow-left"></i> Logout
 
                 </a>

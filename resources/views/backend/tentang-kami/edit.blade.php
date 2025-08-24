@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-sm-5">
-                        <input type="file" name="poto" class="form-control" value="{{ $tentang_kami->poto }}" accept=".jpg, .jpeg, .png" required >
+                        <input type="file" name="poto" class="form-control" value="{{ $tentang_kami->poto }}" accept=".jpg, .jpeg, .png" >
                     </div>
                 </div>
                 

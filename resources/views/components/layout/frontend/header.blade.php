@@ -26,16 +26,16 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="#hero">Beranda<br></a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#services">Kegiatan</a></li>
-                        <li><a href="#doctors">Berita</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#beranda">Beranda<br></a></li>
+                        <li><a href="#tentang-kami">Tentang Kami</a></li>
+                        <li><a href="#kegiatan">Kegiatan</a></li>
+                        <li><a href="#berita">Berita</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="cta-btn d-none d-sm-block" href="#appointment"> Login</a>
+                <a class="cta-btn d-none d-sm-block" href="{{ url('login') }}"> Login</a>
 
             </div>
 
